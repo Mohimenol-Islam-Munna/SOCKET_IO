@@ -16,15 +16,33 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("new user connnected :: ", socket.id);
 
-//   setTimeout(() => {
-//     socket.send("WOW! First message from server to client side");
-//   }, 6000);
+  //  ---------------- build in events -----------------
+  //   setTimeout(() => {
+  //     socket.send("WOW! First message from server to client side");
+  //   }, 6000);
+
+  //   setInterval(() => {
+  //     let date = new Date();
+  //     let time = date.getTime();
+  //     socket.send(time);
+  //   }, 1000);
+  //  -------------- end build in events ---------------
+
+
+  //  ---------------- custom events -------------------
+  setTimeout(() => {
+    socket.emit(
+      "title",
+      "WOW! First message from server to client side with custom event"
+    );
+  }, 6000);
 
   setInterval(() => {
     let date = new Date();
     let time = date.getTime();
-    socket.send(time);
+    socket.emit("time", time);
   }, 1000);
+  //  --------------- end custom events ----------------
 
   //   disconnect user
   socket.on("disconnect", () => {

@@ -24,9 +24,19 @@
       const title2 = document.getElementById("title2");
 
       socket.on("connect", function () {
-        socket.on("message", (data) => {
+        // receive data from server by build in events
+        // socket.on("message", (data) => {
+        // title1.innerText = `${data}`;
+        // title2.innerText = "";
+        // title2.innerText = `${data}`;
+        // });
+
+        // receive data from server by cusotm events
+        socket.on("title", (data) => {
           title1.innerText = `${data}`;
-          
+        });
+
+        socket.on("time", (data) => {
           title2.innerText = "";
           title2.innerText = `${data}`;
         });
