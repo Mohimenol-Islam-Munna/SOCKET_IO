@@ -1,2 +1,4 @@
 basic/server/node_modules
 basic_group_chat/server/node_modules
+socket_io_react/server/node_modules
+socket_io_react/client/node_modules 
