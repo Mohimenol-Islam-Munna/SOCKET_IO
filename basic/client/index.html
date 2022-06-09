@@ -17,11 +17,41 @@
       <span id="title2" style="color: blue"></span>
     </h3>
 
+    <div
+      style="
+        width: 25%;
+        margin: 20px auto;
+        border: 1px solid salmon;
+        padding: 20px;
+        text-align: center;
+      "
+    >
+      <form>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          style="padding: 10px"
+          required
+        />
+        <button onclick="submitName()" type="button" style="padding: 10px">
+          Send Name
+        </button>
+      </form>
+    </div>
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io();
       const title1 = document.getElementById("title1");
       const title2 = document.getElementById("title2");
+
+      // send data from client to server
+      function submitName() {
+        let name = document.getElementById("name").value;
+        console.log("send data from client to server handler ::", name);
+        socket.send(name);
+      }
 
       socket.on("connect", function () {
         // receive data from server by build in events
@@ -40,7 +70,6 @@
           title2.innerText = "";
           title2.innerText = `${data}`;
         });
-        console.log("connected in client side :", socket.id);
       });
     </script>
   </body>

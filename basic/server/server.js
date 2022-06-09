@@ -28,7 +28,6 @@ io.on("connection", (socket) => {
   //   }, 1000);
   //  -------------- end build in events ---------------
 
-
   //  ---------------- custom events -------------------
   setTimeout(() => {
     socket.emit(
@@ -43,6 +42,11 @@ io.on("connection", (socket) => {
     socket.emit("time", time);
   }, 1000);
   //  --------------- end custom events ----------------
+
+  //   receive client data
+  socket.on("message", (data) => {
+    console.log("data from the client ::", data);
+  });
 
   //   disconnect user
   socket.on("disconnect", () => {
