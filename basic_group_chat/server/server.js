@@ -14,7 +14,7 @@ app.get("/", (req, res) => {
 });
 
 // listen server
-const PORT = "3005";
+const PORT = "3010";
 httpServer.listen(PORT, () => {
   console.log(`Your Server is runnig at PORT ${PORT}...`);
 });
