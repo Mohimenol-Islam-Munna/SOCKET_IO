@@ -19,18 +19,28 @@
     <h3 style="text-align: center; margin-top: 20px">
       Customer Namespace:: <span id="customer" style="color: blueviolet"></span>
     </h3>
+    <h3 style="text-align: center; margin-top: 20px">
+      Room :: <span id="room1" style="color: blueviolet"></span>
+    </h3>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const title1 = document.getElementById("title1");
       const player = document.getElementById("player");
       const customer = document.getElementById("customer");
+      const room1 = document.getElementById("room1");
 
       // default connection's data
       const socket = io();
       socket.on("firtBroadcast", (data) => {
         console.log("broadcast data ::", data);
         title1.innerText = data;
+      });
+
+      // rooms
+      socket.on("room1", (data) => {
+        room1.innerText = data;
+        console.log("room1 data", data);
       });
 
       // get data for specific namespace

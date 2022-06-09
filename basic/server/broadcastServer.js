@@ -15,11 +15,23 @@ app.get("/", (req, res) => {
 
 // default  connection for all
 io.on("connection", (socket) => {
+  // create room
+  socket.join("firstRoom");
+
+  let roomSize = io.sockets.adapter.rooms.get("firstRoom").size;
+
+  io.sockets
+    .in("firstRoom")
+    .emit(
+      "room1",
+      `This is first room for our application. room size : ${roomSize}`
+    );
+
   setTimeout(() => {
     io.sockets.emit("firtBroadcast", "This data is broadcasting for you!");
   }, 6000);
 
-  //   disconnect user
+  // disconnect user
   socket.on("disconnect", () => {
     console.log("user disconnected ::", socket.id);
   });
