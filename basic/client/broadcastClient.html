@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket IO Client</title>
+  </head>
+  <body>
+    <h2 style="text-align: center; color: salmon">
+      Welcome To Broadcast World!
+    </h2>
+    <h3 style="text-align: center; margin-top: 20px">
+      <span id="title1" style="color: blueviolet"></span>
+    </h3>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const title1 = document.getElementById("title1");
+
+      socket.on("firtBroadcast", (data) => {
+        console.log("broadcast data ::", data);
+        title1.innerText = data;
+      });
+    </script>
+  </body>
+</html>
