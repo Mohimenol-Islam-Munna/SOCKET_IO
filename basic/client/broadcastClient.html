@@ -11,17 +11,39 @@
       Welcome To Broadcast World!
     </h2>
     <h3 style="text-align: center; margin-top: 20px">
-      <span id="title1" style="color: blueviolet"></span>
+      Default Connection :: <span id="title1" style="color: blueviolet"></span>
+    </h3>
+    <h3 style="text-align: center; margin-top: 20px">
+      Player Namespace:: <span id="player" style="color: blueviolet"></span>
+    </h3>
+    <h3 style="text-align: center; margin-top: 20px">
+      Customer Namespace:: <span id="customer" style="color: blueviolet"></span>
     </h3>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io();
       const title1 = document.getElementById("title1");
+      const player = document.getElementById("player");
+      const customer = document.getElementById("customer");
 
+      // default connection's data
+      const socket = io();
       socket.on("firtBroadcast", (data) => {
         console.log("broadcast data ::", data);
         title1.innerText = data;
+      });
+
+      // get data for specific namespace
+      const playerSocket = io("/player");
+      playerSocket.on("player", (data) => {
+        console.log("customer socket ");
+        player.innerText = data;
+      });
+
+      const customerSocket = io("/customer");
+      customerSocket.on("customer", (data) => {
+        console.log("customer socket ");
+        customer.innerText = data;
       });
     </script>
   </body>
