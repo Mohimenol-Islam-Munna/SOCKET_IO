@@ -13,14 +13,20 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "client", "index.html"));
 });
 
-app.get("/check", (req, res) => {
-  res.send("check");
-});
-
 io.on("connection", (socket) => {
-  console.log("connnected");
+  console.log("new user connnected :: ", socket.id);
+
+  setTimeout(() => {
+    socket.send("WOW! First message from server to client side");
+  }, 6000);
+
+  //   disconnect user
+  socket.on("disconnect", () => {
+    console.log("user disconnected ::", socket.id);
+  });
 });
 
+// listen server
 const PORT = "3005";
 httpServer.listen(PORT, () => {
   console.log(`Your Server is runnig at PORT ${PORT}...`);

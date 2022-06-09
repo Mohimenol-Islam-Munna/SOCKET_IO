@@ -10,10 +10,21 @@
     <h2 style="text-align: center; color: salmon">
       Real Time Chat Application
     </h2>
+    <h3 style="text-align: center; margin-top: 20px">
+      <span id="title" style="color: blueviolet"></span>
+    </h3>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io();
+      const title = document.getElementById("title");
+
+      socket.on("connect", function () {
+        socket.on("message", (data) => {
+          title.innerText = `${data}`;
+        });
+        console.log("connected in client side :", socket.id);
+      });
     </script>
   </body>
 </html>
