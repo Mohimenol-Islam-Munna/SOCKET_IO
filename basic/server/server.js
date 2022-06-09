@@ -43,8 +43,13 @@ io.on("connection", (socket) => {
   }, 1000);
   //  --------------- end custom events ----------------
 
-  //   receive client data
-  socket.on("message", (data) => {
+  //   //   receive client data
+  //   socket.on("message", (data) => {
+  //     console.log("data from the client ::", data);
+  //   });
+
+  //   receive client data by custom event
+  socket.on("name", (data) => {
     console.log("data from the client ::", data);
   });
 

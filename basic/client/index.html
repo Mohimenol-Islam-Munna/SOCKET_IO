@@ -34,7 +34,15 @@
           style="padding: 10px"
           required
         />
-        <button onclick="submitName()" type="button" style="padding: 10px">
+        <!-- <button onclick="submitName()" type="button" style="padding: 10px">
+          Send Name
+        </button> -->
+
+        <button
+          onclick="submitNameWithCustomEvent()"
+          type="button"
+          style="padding: 10px"
+        >
           Send Name
         </button>
       </form>
@@ -51,6 +59,13 @@
         let name = document.getElementById("name").value;
         console.log("send data from client to server handler ::", name);
         socket.send(name);
+      }
+
+      // send data from client to server with custom event
+      function submitNameWithCustomEvent() {
+        let name = document.getElementById("name").value;
+        console.log("send data from client to server handler ::", name);
+        socket.emit("name", name);
       }
 
       socket.on("connect", function () {
