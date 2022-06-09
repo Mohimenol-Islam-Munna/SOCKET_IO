@@ -16,9 +16,15 @@ app.get("/", (req, res) => {
 io.on("connection", (socket) => {
   console.log("new user connnected :: ", socket.id);
 
-  setTimeout(() => {
-    socket.send("WOW! First message from server to client side");
-  }, 6000);
+//   setTimeout(() => {
+//     socket.send("WOW! First message from server to client side");
+//   }, 6000);
+
+  setInterval(() => {
+    let date = new Date();
+    let time = date.getTime();
+    socket.send(time);
+  }, 1000);
 
   //   disconnect user
   socket.on("disconnect", () => {

@@ -11,17 +11,24 @@
       Real Time Chat Application
     </h2>
     <h3 style="text-align: center; margin-top: 20px">
-      <span id="title" style="color: blueviolet"></span>
+      <span id="title1" style="color: blueviolet"></span>
+    </h3>
+    <h3 style="text-align: center; margin-top: 20px">
+      <span id="title2" style="color: blue"></span>
     </h3>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io();
-      const title = document.getElementById("title");
+      const title1 = document.getElementById("title1");
+      const title2 = document.getElementById("title2");
 
       socket.on("connect", function () {
         socket.on("message", (data) => {
-          title.innerText = `${data}`;
+          title1.innerText = `${data}`;
+          
+          title2.innerText = "";
+          title2.innerText = `${data}`;
         });
         console.log("connected in client side :", socket.id);
       });
