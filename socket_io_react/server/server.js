@@ -17,6 +17,15 @@ app.get("*", (req, res) => {
 io.on("connection", (socket) => {
   console.log("new user connnected :: ", socket.id);
 
+  // send data to react frontend
+  io.sockets.emit("title", "React Real Time Chat Application with Socket.IO");
+
+  setInterval(() => {
+    const date = new Date();
+    let time = date.getTime();
+    io.sockets.emit("time", time);
+  }, 2000);
+
   // disconnect user
   socket.on("disconnect", () => {
     console.log("user disconnected ::", socket.id);
